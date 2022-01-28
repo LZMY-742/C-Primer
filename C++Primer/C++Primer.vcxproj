@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="FreeVariablescpp.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Variables.cpp" />
   </ItemGroup>

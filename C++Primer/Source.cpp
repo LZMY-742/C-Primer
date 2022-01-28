@@ -21,13 +21,7 @@ int size(int(&a)[6])
 }
 int main()
 {
-	string word1, word2;
-	do
-	{
-		cout << "Please input two words:";
-		cin >> word1 >> word2;
-		cout << "The shorter word is:" << (word1.size() < word2.size() ? word1 : word2) << endl;
-	} while (cin);
+	
 	return 0;
 	
 }
