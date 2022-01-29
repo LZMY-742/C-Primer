@@ -29,8 +29,13 @@ int main()
 	{
 		if (*iter == *(iter - 1))//将序列中当前字符串和上一个字符串比较
 		{
-			reWord = *iter;
-			break;//如果相同退出循环
+			if (isupper((*iter)[0]))//赋过重复出现的词时大写字母开头才退出循环
+			{
+				reWord = *iter;
+				break;//如果相同退出循环
+			}
+			else//反之继续循环
+				continue;//其实没有这句continue也是一样的效果
 		}
 	}
 	if (!reWord.empty())//如果reWord不是空的，说明被赋过值，有连续重复的词
