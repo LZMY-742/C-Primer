@@ -21,7 +21,22 @@ int size(int(&a)[6])
 }
 int main()
 {
-	
+	vector<string> test;
+	string word, reWord;
+	while (cin >> word)
+		test.push_back(word);//输入一个序列的字符串
+	for (auto iter=test.begin()+1;iter!=test.end();++iter)//从第二个元素遍历字符串序列
+	{
+		if (*iter == *(iter - 1))//将序列中当前字符串和上一个字符串比较
+		{
+			reWord = *iter;
+			break;//如果相同退出循环
+		}
+	}
+	if (!reWord.empty())//如果reWord不是空的，说明被赋过值，有连续重复的词
+		cout << reWord << "重复了" << endl;
+	else//如果reWord是空的，说明没被赋过值，也就是没有连续重复的词
+		cout << "没有词连续出现过" << endl;
 	return 0;
 	
 }
