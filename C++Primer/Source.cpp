@@ -46,10 +46,17 @@ void distinguish_variable(int para)//6.6
 	static int static_variable =9;
 	//para和instance每次调用函数时都重新创建，static_variable在函数第一次被调用时被创建，直到程序结束才被销毁
 }
+void exchange(int* ptr1, int* ptr2)//6.10
+{
+	int temp = *ptr1;
+	*ptr1 = *ptr2;
+	*ptr2 = temp;
+}
 int main()
 {
-	cout << count() << endl;
-	cout << count() << endl;
+	int a = 1, b = 2;
+	exchange(&a, &b);
+	cout << "a= " << a << " " << "b= " << b << endl;
 	return 0;
 }
 
