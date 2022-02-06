@@ -52,11 +52,42 @@ void exchange(int* ptr1, int* ptr2)//6.10
 	*ptr1 = *ptr2;
 	*ptr2 = temp;
 }
+void reset(string& password)//6.11
+{
+	password = "SB";
+}
+void exchange2(int& ptr1, int& ptr2)//6.12
+{
+	int temp = ptr1;
+	ptr1 = ptr2;
+	ptr2 = temp;//引用比指针容易，传递参数的时候直接用变量名就行了，使用的时候也不需要不断地用解引用符
+}
+bool whether_upper(const string& word)//6.17
+{
+	for (auto c : word)
+	{
+		if (isupper(c))
+			return true;
+	}
+	return false;
+}
+void change_to_lower(string& word)//6.17
+{
+	for (auto& c : word)
+	{
+		if (isupper(c))
+			c = tolower(c);
+	}
+}
+
 int main()
 {
-	int a = 1, b = 2;
-	exchange(&a, &b);
-	cout << "a= " << a << " " << "b= " << b << endl;
+	
+	vector<int> cc(10);
+	const auto gg = cc.begin();
+	string name = "Eric";
+	change_to_lower(name);
+	cout << name << endl;
 	return 0;
 }
 
