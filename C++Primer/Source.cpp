@@ -79,15 +79,34 @@ void change_to_lower(string& word)//6.17
 			c = tolower(c);
 	}
 }
-
+int compare(int a, int *const ptr)//6.21
+{
+	if (a > *ptr)
+	{
+		return a;
+	}
+	else
+		return *ptr;
+}
+void exchange3(int *& ptr1, int*& ptr2)//6.22
+{
+	auto temp = ptr1;
+	ptr1 = ptr2;
+	ptr2 = temp;
+}
+void print(int *const p, size_t t)//6.23
+{
+	for (size_t i = 0; i < t; ++i)
+	{
+		cout << p[i] << endl;
+	}
+}
 int main()
 {
-	
-	vector<int> cc(10);
-	const auto gg = cc.begin();
-	string name = "Eric";
-	change_to_lower(name);
-	cout << name << endl;
+	int a = 7, b = 0;
+	int* p1 = &a, *p2 = &b,j[2]{0,1};
+	print(p1,1);
+	print(j,end(j)-begin(j));
 	return 0;
 }
 
