@@ -13,6 +13,7 @@ using std::end;
 using std::strcat;
 using std::runtime_error;
 using std::exception;
+using std::initializer_list;
 int size(int(&a)[6])
 {
 	int b[sizeof(a)/sizeof(*a)];
@@ -101,12 +102,20 @@ void print(int *const p, size_t t)//6.23
 		cout << p[i] << endl;
 	}
 }
-int main()
+int sum(initializer_list<int> ig)//6.27
 {
-	int a = 7, b = 0;
-	int* p1 = &a, *p2 = &b,j[2]{0,1};
-	print(p1,1);
-	print(j,end(j)-begin(j));
+	int sum = 0;
+	for (auto i : ig)
+		sum += i;
+	return sum;
+}
+void foo(...)//?
+{
+
+}
+int main(int argc, char **argv)
+{
+	cout << sum( { 1, 2, 3 }) << endl;//Êä³ö6
 	return 0;
 }
 
