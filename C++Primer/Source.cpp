@@ -128,11 +128,19 @@ void print3(vector<int> a,size_t ini)//6.33
 
 
 }
-
+using Hello = string[10];
+string nameList[]{ "ab","cd","ef","gg","dd","ff","shabi","yy","kk","dd" };
+decltype(nameList)& wordList(string (& nameList)[10])//6.37
+{
+	return nameList;
+}
 int main(int argc, char **argv)
 {
-	vector<int> list{ 1,2,3,4,5 };
-	print3(list,0);
+	
+	for (auto s : wordList(nameList))
+	{
+		cout<<s<<endl;
+	}
 	return EXIT_SUCCESS;
 }
 
