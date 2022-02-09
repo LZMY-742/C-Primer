@@ -2,7 +2,7 @@
 #include "Sales_data.h"
 #include "vector"
 #include "stdexcept"
-extern const int b = 2;
+#include"cstdlib"
 using std::cout;
 using std::cin;
 using std::endl;
@@ -14,6 +14,9 @@ using std::strcat;
 using std::runtime_error;
 using std::exception;
 using std::initializer_list;
+
+using arrT = int[10];
+
 int size(int(&a)[6])
 {
 	int b[sizeof(a)/sizeof(*a)];
@@ -113,9 +116,23 @@ void foo(...)//?
 {
 
 }
+void print3(vector<int> a,size_t ini)//6.33
+{
+
+	if (ini != a.size())
+	{
+		cout << a[ini] << endl;
+		++ini;
+		print3(a,ini);
+	}
+
+
+}
+
 int main(int argc, char **argv)
 {
-	cout << sum( { 1, 2, 3 }) << endl;//Êä³ö6
-	return 0;
+	vector<int> list{ 1,2,3,4,5 };
+	print3(list,0);
+	return EXIT_SUCCESS;
 }
 
