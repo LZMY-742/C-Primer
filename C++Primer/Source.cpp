@@ -134,13 +134,13 @@ decltype(nameList)& wordList(string (& nameList)[10])//6.37
 {
 	return nameList;
 }
+string make_plural(size_t ctr, const string& word, const string& ending = "s")//6.42
+{
+	return ctr > 1 ? word + ending : word;
+}
 int main(int argc, char **argv)
 {
-	
-	for (auto s : wordList(nameList))
-	{
-		cout<<s<<endl;
-	}
+	cout << make_plural(2, "failure") << endl;
 	return EXIT_SUCCESS;
 }
 
