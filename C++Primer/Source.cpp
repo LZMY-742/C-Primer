@@ -3,6 +3,10 @@
 #include "vector"
 #include "stdexcept"
 #include"cstdlib"
+#include "Chapter6.h"
+#include "cassert"
+
+#define NDEBUG
 using std::cout;
 using std::cin;
 using std::endl;
@@ -118,7 +122,10 @@ void foo(...)//?
 }
 void print3(vector<int> a,size_t ini)//6.33
 {
-
+#ifndef NDEBUG //6.47 没定义NDEBUG下列调试代码运行，定义了自动忽视下列代码
+	cout << "vector size: " << a.size() << endl;
+#endif
+	//assert(ini != 0);
 	if (ini != a.size())
 	{
 		cout << a[ini] << endl;
@@ -138,9 +145,19 @@ string make_plural(size_t ctr, const string& word, const string& ending = "s")//
 {
 	return ctr > 1 ? word + ending : word;
 }
+constexpr int increment(int b)
+{
+	return ++b;
+}
+constexpr int new_value(int a)
+{
+	return increment(a);
+}
+
 int main(int argc, char **argv)
 {
-	cout << make_plural(2, "failure") << endl;
+	vector<int> gg{ 1,2,3,4 };
+	print3(gg, 0);
 	return EXIT_SUCCESS;
 }
 
