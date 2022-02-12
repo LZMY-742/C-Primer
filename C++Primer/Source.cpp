@@ -4,9 +4,10 @@
 #include "stdexcept"
 #include"cstdlib"
 #include "Chapter6.h"
+//#define NDEBUG
 #include "cassert"
 
-#define NDEBUG
+
 using std::cout;
 using std::cin;
 using std::endl;
@@ -124,8 +125,10 @@ void print3(vector<int> a,size_t ini)//6.33
 {
 #ifndef NDEBUG //6.47 没定义NDEBUG下列调试代码运行，定义了自动忽视下列代码
 	cout << "vector size: " << a.size() << endl;
+	if(ini==0)
+	cout << __FILE__ << endl;
 #endif
-	//assert(ini != 0);
+	
 	if (ini != a.size())
 	{
 		cout << a[ini] << endl;
@@ -156,8 +159,7 @@ constexpr int new_value(int a)
 
 int main(int argc, char **argv)
 {
-	vector<int> gg{ 1,2,3,4 };
-	print3(gg, 0);
+	f(2.56,3.14);
 	return EXIT_SUCCESS;
 }
 
