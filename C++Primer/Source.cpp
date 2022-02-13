@@ -156,10 +156,30 @@ constexpr int new_value(int a)
 {
 	return increment(a);
 }
-
+int add(int a, int b)
+{
+	return a + b;
+}
+int minus(int a, int b)
+{
+	return a - b;
+}
+int mutiply(int a, int b)
+{
+	return a * b;
+}
+int divide(int a, int b)
+{
+	return a / b;
+}
 int main(int argc, char **argv)
 {
-	f(2.56,3.14);
+	using j = int(*) (int, int);
+	vector<j> function{add, minus, mutiply, divide};//6.55
+	for (auto func : function)//6.56
+	{
+		cout << func(6, 3) << endl;
+	}
 	return EXIT_SUCCESS;
 }
 
