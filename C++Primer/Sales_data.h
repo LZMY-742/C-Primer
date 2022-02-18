@@ -25,25 +25,24 @@ struct Sales_data
 	}
 	string isbn();
 	Sales_data(istream& is);
-	istream& read(istream& is);
+
 };
+
 string Sales_data::isbn()
 {
 	return bookNo;
 }
 Sales_data::Sales_data(istream& is)
 {
-	read(is);
-}
-istream& Sales_data::read(istream& is)
-{
 	double price = 0;
 	is >> bookNo >> units_sold >> price;
 	revenue = price * units_sold;
-	return is;
 }
+istream& read(istream& is, Sales_data& item);
 ostream& print(ostream& os, const Sales_data& item);
 Sales_data add(const Sales_data a, const Sales_data b);
+
+
 struct Person
 {
 	string name;

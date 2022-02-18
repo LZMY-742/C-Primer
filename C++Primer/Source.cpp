@@ -22,7 +22,13 @@ using std::initializer_list;
 using std::istream;
 using std::ostream;
 
-
+istream& read(istream& is, Sales_data& item)
+{
+	double price = 0;
+	is >> item.bookNo >> item.units_sold >> price;
+	item.revenue = price * item.units_sold;
+	return is;
+}
 ostream& print(ostream& os, const Sales_data& item)
 {
 	os << "revenue: " << item.revenue << endl << "units_sold: " << item.units_sold << endl
@@ -47,30 +53,26 @@ ostream& print_person(ostream& os, const Person& Amanda)//7.9
 }
 int main(int argc, char **argv)
 {
-	/*Sales_data total;
-	if (read(cin,total)) {
-		Sales_data trans;
-		while (read(cin,trans)) {
-			if (total.isbn() == trans.isbn()) {
+	Sales_data total(cin);
+	if (cin)
+	{
+		Sales_data trans(cin);
+		do
+		{
+			if (total.isbn() == trans.isbn())
 				total.combine(trans);
-			}
-			else {
-				print(cout, total);
+			else
+			{
+				print(cout, total) << endl;
 				total = trans;
 			}
-		}
-		print(cout , total);
+		} while (read(cin, trans));
+		print(cout, total) << endl;
 	}
-	else {
-		std::cerr << "No data?!" << std::endl;
-		return -1;
-	}*/
-	Sales_data jj("zhubi",3,4);
-	Sales_data ff;
-	Sales_data cc(cin);
-	print(cout, jj);
-	print(cout, ff);
-	print(cout, cc);
+	else
+	{
+		std::cerr << "No data?!" << endl;
+	}
 	return 0;
 }
 
