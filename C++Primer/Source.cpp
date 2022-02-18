@@ -31,8 +31,9 @@ istream& read(istream& is, Sales_data& item)
 }
 ostream& print(ostream& os, const Sales_data& item)
 {
-	os << "revenue: " << item.revenue << endl << "units_sold" << item.units_sold << endl
+	os << "revenue: " << item.revenue << endl << "units_sold: " << item.units_sold << endl
 		<< "bookNo: " << item.bookNo << endl;
+	return os;
 }
 Sales_data add(const Sales_data a, const Sales_data b)
 {
@@ -43,20 +44,18 @@ Sales_data add(const Sales_data a, const Sales_data b)
 int main(int argc, char **argv)
 {
 	Sales_data total;
-	if (cin >> total.bookNo >> total.units_sold >> total.revenue) {
+	if (read(cin,total)) {
 		Sales_data trans;
-		while (cin >> trans.bookNo >> trans.units_sold >> trans.revenue) {
+		while (read(cin,trans)) {
 			if (total.isbn() == trans.isbn()) {
 				total.combine(trans);
 			}
 			else {
-				cout << total.isbn() << " " << total.units_sold << " "
-					<< total.revenue << endl;
+				print(cout, total);
 				total = trans;
 			}
 		}
-		cout << total.isbn() << " " << total.units_sold << " " << total.revenue
-			<< endl;
+		print(cout , total);
 	}
 	else {
 		std::cerr << "No data?!" << std::endl;
