@@ -18,15 +18,15 @@
     <ClCompile Include="Source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Variables.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="FreeVariablescpp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sales_data.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Chapter6.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

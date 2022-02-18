@@ -7,9 +7,16 @@ using std::istream;
 using std::ostream;
 struct Sales_data
 {
-	double revenue;
-	unsigned units_sold;
-	string bookNo;
+	double revenue=0;
+	unsigned units_sold=0;
+	string bookNo="";//类内初始值
+
+	Sales_data() = default;
+	
+	Sales_data(string s, unsigned u, double r) : bookNo(s), units_sold(u),
+		revenue(r) {}
+	Sales_data(string s) :bookNo(s) {}
+
 	Sales_data& combine(const Sales_data& rhs)
 	{
 		revenue += rhs.revenue;
@@ -17,12 +24,24 @@ struct Sales_data
 		return *this;
 	}
 	string isbn();
+	Sales_data(istream& is);
+	istream& read(istream& is);
 };
 string Sales_data::isbn()
 {
 	return bookNo;
 }
-istream& read(istream& is, Sales_data& item);
+Sales_data::Sales_data(istream& is)
+{
+	read(is);
+}
+istream& Sales_data::read(istream& is)
+{
+	double price = 0;
+	is >> bookNo >> units_sold >> price;
+	revenue = price * units_sold;
+	return is;
+}
 ostream& print(ostream& os, const Sales_data& item);
 Sales_data add(const Sales_data a, const Sales_data b);
 struct Person
@@ -39,4 +58,5 @@ struct Person
 	}
 };
 istream& read_person(istream& is, Person& Amanda);
+ostream& print_person(ostream& os, const Person& Amanda);
 #endif
