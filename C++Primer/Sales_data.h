@@ -3,6 +3,8 @@
 #include <string>
 #include <iostream>
 using std::string;
+using std::istream;
+using std::ostream;
 struct Sales_data
 {
 	double revenue;
@@ -20,6 +22,9 @@ string Sales_data::isbn()
 {
 	return bookNo;
 }
+istream& read(istream& is, Sales_data& item);
+ostream& print(ostream& os, const Sales_data& item);
+Sales_data add(const Sales_data a, const Sales_data b);
 struct Person
 {
 	string name;
