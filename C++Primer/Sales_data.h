@@ -27,7 +27,9 @@ struct Sales_data
 	Sales_data(istream& is);
 
 };
-
+istream& read(istream& is, Sales_data& item);
+ostream& print(ostream& os, const Sales_data& item);
+Sales_data add(const Sales_data a, const Sales_data b);
 string Sales_data::isbn()
 {
 	return bookNo;
@@ -38,15 +40,16 @@ Sales_data::Sales_data(istream& is)
 	is >> bookNo >> units_sold >> price;
 	revenue = price * units_sold;
 }
-istream& read(istream& is, Sales_data& item);
-ostream& print(ostream& os, const Sales_data& item);
-Sales_data add(const Sales_data a, const Sales_data b);
+
 
 
 struct Person
 {
-	string name;
-	string address;
+	string name="";
+	string address="";
+	Person(string n, string a) :name(n), address(a) {}
+	Person() = default;
+
 	string get_name() const//应该使用const因为函数没有改变内部变量
 	{
 		return name;
