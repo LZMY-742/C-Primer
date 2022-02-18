@@ -24,5 +24,13 @@ struct Person
 {
 	string name;
 	string address;
+	string get_name() const//应该使用const因为函数没有改变内部变量
+	{
+		return name;
+	}
+	string get_address() const//应该使用const因为函数没有改变内部变量
+	{
+		return address;
+	}
 };
 #endif
