@@ -20,4 +20,9 @@ string Sales_data::isbn()
 {
 	return bookNo;
 }
+struct Person
+{
+	string name;
+	string address;
+};
 #endif
