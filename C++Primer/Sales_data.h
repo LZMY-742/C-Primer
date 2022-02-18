@@ -38,4 +38,5 @@ struct Person
 		return address;
 	}
 };
+istream& read_person(istream& is, Person& Amanda);
 #endif

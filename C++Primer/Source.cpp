@@ -41,6 +41,14 @@ Sales_data add(const Sales_data a, const Sales_data b)
 	c.combine(b);
 	return c;
 }
+istream& read_person(istream& is, Person& Amanda)//7.9
+{
+	is >> Amanda.name >> Amanda.address;
+}
+ostream& print_person(ostream& os, Person& Amanda)//7.9
+{
+	os << "Name: " << Amanda.name << endl << "Address: " << Amanda.address;
+}
 int main(int argc, char **argv)
 {
 	Sales_data total;
