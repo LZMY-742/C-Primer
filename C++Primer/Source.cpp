@@ -27,17 +27,16 @@ int main(int argc, char **argv)
 	if (cin >> total.bookNo >> total.units_sold >> total.revenue) {
 		Sales_data trans;
 		while (cin >> trans.bookNo >> trans.units_sold >> trans.revenue) {
-			if (total.bookNo == trans.bookNo) {
-				total.units_sold += trans.units_sold;
-				total.revenue += trans.revenue;
+			if (total.isbn() == trans.isbn()) {
+				total.combine(trans);
 			}
 			else {
-				cout << total.bookNo << " " << total.units_sold << " "
+				cout << total.isbn() << " " << total.units_sold << " "
 					<< total.revenue << endl;
 				total = trans;
 			}
 		}
-		cout << total.bookNo << " " << total.units_sold << " " << total.revenue
+		cout << total.isbn() << " " << total.units_sold << " " << total.revenue
 			<< endl;
 	}
 	else {

@@ -11,7 +11,7 @@ struct Sales_data
 	Sales_data& combine(const Sales_data& rhs)
 	{
 		revenue += rhs.revenue;
-		units_sold += rhs.revenue;
+		units_sold += rhs.units_sold;
 		return *this;
 	}
 	string isbn();
