@@ -14,12 +14,10 @@ private:
 	string bookNo="";//类内初始值
 	double avg_price();
 public:
-	Sales_data() :Sales_data("", 0, 0) { std::cout << "default" << endl; }
+	Sales_data() :Sales_data("", 0, 0) {  }
 	
 	Sales_data(string s, unsigned u, double r) : bookNo(s), units_sold(u),
-		revenue(r) {
-		std::cout << "standard" << endl;
-	}
+		revenue(r) {}
 	Sales_data(string s) :bookNo(s) {}
 	Sales_data(istream& is)
 	{
@@ -81,9 +79,13 @@ public:
 		return address;
 	}
 };
-struct X {
-	X(int i, int j) : base(i), rem(i% j) {}
-	int rem, base;
+class Employee {
+private:
+	double height, weight;
+	string company;
+public:
+	Employee(double w, double h, string c="Tencent"):height(h),weight(w),company(c){ }
+	Employee() :Employee(75, 180) { std::cout << company << endl; }
 };
 
 #endif
