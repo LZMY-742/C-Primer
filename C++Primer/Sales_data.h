@@ -14,16 +14,17 @@ private:
 	string bookNo="";//类内初始值
 	double avg_price();
 public:
-	Sales_data() = default;
+	Sales_data() :Sales_data("", 0, 0) { std::cout << "default" << endl; }
 	
 	Sales_data(string s, unsigned u, double r) : bookNo(s), units_sold(u),
-		revenue(r) {}
+		revenue(r) {
+		std::cout << "standard" << endl;
+	}
 	Sales_data(string s) :bookNo(s) {}
 	Sales_data(istream& is)
 	{
 		read(is);
 	}
-
 	Sales_data& combine(const Sales_data& rhs)
 	{
 		revenue += rhs.revenue;
@@ -56,8 +57,9 @@ inline double Sales_data::avg_price()//7.26
 	return units_sold ? revenue / units_sold : 0;
 }
 
-
-
+struct Person;
+istream& read_person(istream& is, Person& Amanda);
+ostream& print_person(ostream& os, const Person& Amanda);
 struct Person
 {
 	friend istream& read_person(istream& is, Person& Amanda);
@@ -79,7 +81,9 @@ public:
 		return address;
 	}
 };
+struct X {
+	X(int i, int j) : base(i), rem(i% j) {}
+	int rem, base;
+};
 
-istream& read_person(istream& is, Person& Amanda);
-ostream& print_person(ostream& os, const Person& Amanda);
 #endif
