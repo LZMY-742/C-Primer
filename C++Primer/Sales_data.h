@@ -14,12 +14,12 @@ private:
 	string bookNo="";//类内初始值
 	double avg_price();
 public:
-	 Sales_data() :Sales_data("", 0, 0) {  }
+	Sales_data() :Sales_data("", 0, 0) {  }
 	
 	Sales_data(string s, unsigned u, double r) : bookNo(s), units_sold(u),
 		revenue(r) {}
-	explicit Sales_data(string s) :bookNo(s) {}
-	explicit Sales_data(istream& is)
+	Sales_data(string s) :bookNo(s) {}
+	Sales_data(istream& is)
 	{
 		read(is);
 	}
@@ -49,7 +49,7 @@ public:
 	
 };
 
-Sales_data add( const Sales_data a,  const Sales_data b);
+Sales_data add(const Sales_data a, const Sales_data b);
 inline double Sales_data::avg_price()//7.26
 {
 	return units_sold ? revenue / units_sold : 0;
@@ -69,6 +69,7 @@ private:
 public:
 	Person(string n, string a) :name(n), address(a) {}
 	Person() = default;
+
 	string get_name() const//应该使用const因为函数没有改变内部变量
 	{
 		return name;
@@ -85,14 +86,6 @@ private:
 public:
 	Employee(double w, double h, string c="Tencent"):height(h),weight(w),company(c){ }
 	Employee() :Employee(75, 180) { std::cout << company << endl; }
-};
-class Debug {//7.53
-private:
-	int jj=54;
-	int error, num;
-public:
-	constexpr Debug(int e, int n):error(e),num(n){}
-	Debug() = default;
 };
 
 #endif
