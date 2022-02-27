@@ -2,6 +2,7 @@
 #define SALES_DATA
 #include <string>
 #include <iostream>
+#include<math.h>
 using std::string;
 using std::istream;
 using std::ostream;
@@ -13,13 +14,15 @@ private:
 	unsigned units_sold=0;
 	string bookNo="";//类内初始值
 	double avg_price();
+	
 public:
+	
 	Sales_data() :Sales_data("", 0, 0) {  }
 	
 	Sales_data(string s, unsigned u, double r) : bookNo(s), units_sold(u),
 		revenue(r) {}
-	Sales_data(string s) :bookNo(s) {}
-	Sales_data(istream& is)
+	explicit Sales_data(string s) :bookNo(s) {}
+	explicit Sales_data(istream& is)
 	{
 		read(is);
 	}
@@ -48,6 +51,7 @@ public:
 	}
 	
 };
+
 
 Sales_data add(const Sales_data a, const Sales_data b);
 inline double Sales_data::avg_price()//7.26
@@ -87,5 +91,28 @@ public:
 	Employee(double w, double h, string c="Tencent"):height(h),weight(w),company(c){ }
 	Employee() :Employee(75, 180) { std::cout << company << endl; }
 };
+class Debug {//7.53
+private:
+	int jj = 54;
+	int error, num;
+public:
+	constexpr Debug(int e, int n) :error(e), num(n) {}
+	Debug() = default;
+};
+class Account {
+private:
+	static double interestRate;
+	double deposit;
+	unsigned year;
+	double nowMoney;
+public:
+	Account():Account(300,0){}
+	Account(double d,unsigned y):deposit(d),year(y),nowMoney(d*pow((1+interestRate),y)){}
+	double getMoney()
+	{
+		return nowMoney;
+	}
+};
+double Account::interestRate = 0.2;
 
 #endif
