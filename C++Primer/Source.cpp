@@ -75,11 +75,34 @@ void read_file(vector<string>& vec)
 }
 int main(int argc, char **argv)
 {
-	vector<string> content;
-	read_file(content);
-	ofstream out("output.txt");
-	for (auto s : content)
-		out << s << endl;
+	ifstream input(argv[1]);
+	ofstream output(argv[2],ofstream::out|ofstream::app);
+	if (input && output)
+	{
+		Sales_data total;
+		if (read(input, total))
+		{
+			Sales_data trans;
+			while (read(input, trans))
+			{
+				if (total.isbn() == trans.isbn())
+					total.combine(trans);
+				else
+				{
+					print(output, total) << endl;
+					total = trans;
+				}
+			}
+			print(output, total) << endl;
+		}
+		else
+		{
+			cerr << "No data?" << endl;
+		}
+	}
+	else
+		cerr << "Can't open file!" << endl;
+	
 	return 0;
 }
 
