@@ -1,4 +1,4 @@
-#include <string>
+
 #include "Sales_data.h"
 #include "vector"
 #include "stdexcept"
@@ -6,11 +6,12 @@
 #include "Chapter6.h"
 //#define NDEBUG
 #include "cassert"
-
-
+#include "Screen.h"
+#include <fstream>
 using std::cout;
 using std::cin;
 using std::endl;
+using std::cerr;
 using std::string;
 using std::vector;
 using std::begin;
@@ -21,18 +22,22 @@ using std::exception;
 using std::initializer_list;
 using std::istream;
 using std::ostream;
+using std::ifstream;
+using std::ofstream;
 
-istream& read(istream& is, Sales_data& item)
+vector<double> Account::vec(vecSize);
+double Account::interestRate = 0.2;
+istream& read(istream& is,Sales_data& a )
 {
 	double price = 0;
-	is >> item.bookNo >> item.units_sold >> price;
-	item.revenue = price * item.units_sold;
+	is >> a.bookNo >> a.units_sold >> price;
+	a.revenue = price * a.units_sold;
 	return is;
 }
-ostream& print(ostream& os, const Sales_data& item)
+ostream& print(ostream& os,const Sales_data& b)
 {
-	os << "revenue: " << item.revenue << endl << "units_sold: " << item.units_sold << endl
-		<< "bookNo: " << item.bookNo << endl;
+	os << "revenue: " << b.revenue << endl << "units_sold: " << b.units_sold << endl
+		<< "bookNo: " << b.bookNo << endl;
 	return os;
 }
 Sales_data add(const Sales_data a, const Sales_data b)
@@ -41,7 +46,7 @@ Sales_data add(const Sales_data a, const Sales_data b)
 	c.combine(b);
 	return c;
 }
-istream& read_person(istream& is, Person& Amanda)//7.9
+ istream& read_person(istream& is, Person& Amanda)//7.9
 {
 	is >> Amanda.name >> Amanda.address;
 	return is;
@@ -53,25 +58,27 @@ ostream& print_person(ostream& os, const Person& Amanda)//7.9
 }
 int main(int argc, char **argv)
 {
-	Sales_data total(cin);
-	if (cin)
+	ifstream input(argv[1]);
+	ofstream output(argv[2]);
+	Sales_data total;
+	if (read(input, total))
 	{
-		Sales_data trans(cin);
-		do
+		Sales_data trans;
+		while (read(input, trans))
 		{
 			if (total.isbn() == trans.isbn())
 				total.combine(trans);
 			else
 			{
-				print(cout, total) << endl;
+				print(output, total) << endl;
 				total = trans;
 			}
-		} while (read(cin, trans));
-		print(cout, total) << endl;
+		}
+		print(output, total) << endl;
 	}
-	else
+	else 
 	{
-		std::cerr << "No data?!" << endl;
+		cerr << "No data?" << endl;
 	}
 	return 0;
 }
