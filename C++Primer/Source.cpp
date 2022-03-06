@@ -62,7 +62,7 @@ void read_file(vector<string>& vec)
 	if (in)
 	{
 		string line = "";
-		while (getline(in, line))
+		while (in>>line)
 		{
 			vec.push_back(line);
 		}
