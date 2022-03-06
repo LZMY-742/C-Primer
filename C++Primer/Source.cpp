@@ -56,30 +56,30 @@ ostream& print_person(ostream& os, const Person& Amanda)//7.9
 	os << "Name: " << Amanda.name << endl << "Address: " << Amanda.address;
 	return os;
 }
+void read_file(vector<string>& vec)
+{
+	ifstream in("input2.txt");
+	if (in)
+	{
+		string line = "";
+		while (getline(in, line))
+		{
+			vec.push_back(line);
+		}
+	}
+	else
+	{
+		cerr << "can't open the file!";
+	}
+	
+}
 int main(int argc, char **argv)
 {
-	ifstream input(argv[1]);
-	ofstream output(argv[2]);
-	Sales_data total;
-	if (read(input, total))
-	{
-		Sales_data trans;
-		while (read(input, trans))
-		{
-			if (total.isbn() == trans.isbn())
-				total.combine(trans);
-			else
-			{
-				print(output, total) << endl;
-				total = trans;
-			}
-		}
-		print(output, total) << endl;
-	}
-	else 
-	{
-		cerr << "No data?" << endl;
-	}
+	vector<string> content;
+	read_file(content);
+	ofstream out("output.txt");
+	for (auto s : content)
+		out << s << endl;
 	return 0;
 }
 
