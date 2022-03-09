@@ -8,6 +8,7 @@
 #include "cassert"
 #include "Screen.h"
 #include <fstream>
+#include <sstream>
 using std::cout;
 using std::cin;
 using std::endl;
@@ -24,7 +25,8 @@ using std::istream;
 using std::ostream;
 using std::ifstream;
 using std::ofstream;
-
+using std::istringstream;
+using std::ostringstream;
 vector<double> Account::vec(vecSize);
 double Account::interestRate = 0.2;
 istream& read(istream& is,Sales_data& a )
@@ -56,7 +58,7 @@ ostream& print_person(ostream& os, const Person& Amanda)//7.9
 	os << "Name: " << Amanda.name << endl << "Address: " << Amanda.address;
 	return os;
 }
-void read_file(vector<string>& vec)
+istream& read_file(vector<string>& vec)
 {
 	ifstream in("input2.txt");
 	if (in)
@@ -71,38 +73,21 @@ void read_file(vector<string>& vec)
 	{
 		cerr << "can't open the file!";
 	}
-	
+	return in;
+}
+istream& read_string(istream& in)
+{
+	string word;
+	while (in >> word)
+		cout << word << endl;
+	in.clear();
+	return in;
 }
 int main(int argc, char **argv)
 {
-	ifstream input(argv[1]);
-	ofstream output(argv[2],ofstream::out|ofstream::app);
-	if (input && output)
-	{
-		Sales_data total;
-		if (read(input, total))
-		{
-			Sales_data trans;
-			while (read(input, trans))
-			{
-				if (total.isbn() == trans.isbn())
-					total.combine(trans);
-				else
-				{
-					print(output, total) << endl;
-					total = trans;
-				}
-			}
-			print(output, total) << endl;
-		}
-		else
-		{
-			cerr << "No data?" << endl;
-		}
-	}
-	else
-		cerr << "Can't open file!" << endl;
-	
+	string number = "abc efg ddd caonima";
+	istringstream ii(number);
+	read_string(ii);
 	return 0;
 }
 

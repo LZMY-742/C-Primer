@@ -22,3 +22,15 @@ revenue: 1056
 units_sold: 32
 bookNo: intoTheWild
 
+revenue: 40197
+units_sold: 1279
+bookNo: ddd
+
+revenue: 14124
+units_sold: 343
+bookNo: ccc
+
+revenue: 1056
+units_sold: 32
+bookNo: intoTheWild
+
