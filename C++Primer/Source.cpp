@@ -85,9 +85,26 @@ istream& read_string(istream& in)
 }
 int main(int argc, char **argv)
 {
-	string number = "abc efg ddd caonima";
-	istringstream ii(number);
-	read_string(ii);
+	string line,word;
+	ifstream ff("output.txt");
+	vector<string> wordLine;
+	if (ff)
+	{
+		while (getline(ff, line))
+		{
+			wordLine.push_back(line);
+		}
+	}
+	else
+	{
+		cerr << "Can't open file!" << endl;
+	}
+	for (auto s : wordLine)
+	{
+		istringstream in(s);
+		while(in>>word)
+			cout << word << endl;
+	}
 	return 0;
 }
 
