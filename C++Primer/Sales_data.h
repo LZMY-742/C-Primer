@@ -105,6 +105,10 @@ public:
 };
 
 constexpr int Account::vecSize;
-
+struct PersonInfo
+{
+	string name;
+	vector<string> phones;
+};
 
 #endif

@@ -83,27 +83,32 @@ istream& read_string(istream& in)
 	in.clear();
 	return in;
 }
+void telephone_number(istream& in)
+{
+	string line, word;
+	vector<PersonInfo> people;
+	while (getline(in, line))
+	{
+		PersonInfo info;
+		istringstream record(line);
+		record >> info.name;
+		while (record >> word)
+			info.phones.push_back(word);
+		people.push_back(info);
+	}
+	for (auto p : people)
+		cout << p.name << endl;
+}
 int main(int argc, char **argv)
 {
-	string line,word;
-	ifstream ff("output.txt");
-	vector<string> wordLine;
+	ifstream ff("input.txt");
 	if (ff)
 	{
-		while (getline(ff, line))
-		{
-			wordLine.push_back(line);
-		}
+		telephone_number(ff);
 	}
 	else
 	{
-		cerr << "Can't open file!" << endl;
-	}
-	for (auto s : wordLine)
-	{
-		istringstream in(s);
-		while(in>>word)
-			cout << word << endl;
+		cerr << "Can't open the file" << endl;
 	}
 	return 0;
 }
