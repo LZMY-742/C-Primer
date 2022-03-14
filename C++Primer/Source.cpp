@@ -103,20 +103,21 @@ void telephone_number(istream& in)
 	for (auto p : people)
 		cout << p.name << endl;
 }
-bool search(vector<int>::iterator b, vector<int>::iterator e, int num)//9.4
+vector<int>::iterator& search(vector<int>::iterator& b, vector<int>::iterator& e, int num)//9.5
 {
 	while (b != e)
 	{
 		if (*b == num)
-			return true;
+			return b;
 		++b;
 	}
-	return false;
+	return e;//没找到就返回最后一个迭代器，注意如果直接解引用尾迭代器会报错
 }
 int main(int argc, char **argv)
 {
 	vector<int> list{ 1,2,34,5 };
-	cout << search(list.begin(), list.end(), 100) << endl;
+	auto a = list.begin(), b = list.end();
+	cout << *search(a,b, 2) << endl;
 	return 0;
 }
 
