@@ -9,6 +9,8 @@
 #include "Screen.h"
 #include <fstream>
 #include <sstream>
+#include <list>
+#include <deque>
 using std::cout;
 using std::cin;
 using std::endl;
@@ -27,6 +29,8 @@ using std::ifstream;
 using std::ofstream;
 using std::istringstream;
 using std::ostringstream;
+using std::list;
+using std::deque;
 vector<double> Account::vec(vecSize);
 double Account::interestRate = 0.2;
 istream& read(istream& is,Sales_data& a )
@@ -99,17 +103,20 @@ void telephone_number(istream& in)
 	for (auto p : people)
 		cout << p.name << endl;
 }
+bool search(vector<int>::iterator b, vector<int>::iterator e, int num)//9.4
+{
+	while (b != e)
+	{
+		if (*b == num)
+			return true;
+		++b;
+	}
+	return false;
+}
 int main(int argc, char **argv)
 {
-	ifstream ff("input.txt");
-	if (ff)
-	{
-		telephone_number(ff);
-	}
-	else
-	{
-		cerr << "Can't open the file" << endl;
-	}
+	vector<int> list{ 1,2,34,5 };
+	cout << search(list.begin(), list.end(), 100) << endl;
 	return 0;
 }
 
