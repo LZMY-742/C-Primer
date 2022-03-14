@@ -11,6 +11,7 @@
 #include <sstream>
 #include <list>
 #include <deque>
+#include <array>
 using std::cout;
 using std::cin;
 using std::endl;
@@ -31,6 +32,8 @@ using std::istringstream;
 using std::ostringstream;
 using std::list;
 using std::deque;
+
+
 vector<double> Account::vec(vecSize);
 double Account::interestRate = 0.2;
 istream& read(istream& is,Sales_data& a )
@@ -115,9 +118,11 @@ vector<int>::iterator& search(vector<int>::iterator& b, vector<int>::iterator& e
 }
 int main(int argc, char **argv)
 {
-	vector<int> list{ 1,2,34,5 };
-	auto a = list.begin(), b = list.end();
-	cout << *search(a,b, 2) << endl;
+	list<int> jb{ 1,2,3 };
+	vector<int> bb{ 1,2,3 };
+	vector<double> ag{ jb.begin(),jb.end() };
+	vector<double> acc{ bb.begin(),bb.end() };
+	
 	return 0;
 }
 
