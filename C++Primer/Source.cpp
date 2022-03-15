@@ -32,7 +32,7 @@ using std::istringstream;
 using std::ostringstream;
 using std::list;
 using std::deque;
-
+using std::array;
 
 vector<double> Account::vec(vecSize);
 double Account::interestRate = 0.2;
@@ -118,11 +118,12 @@ vector<int>::iterator& search(vector<int>::iterator& b, vector<int>::iterator& e
 }
 int main(int argc, char **argv)
 {
-	list<int> jb{ 1,2,3 };
-	vector<int> bb{ 1,2,3 };
-	vector<double> ag{ jb.begin(),jb.end() };
-	vector<double> acc{ bb.begin(),bb.end() };
-	
+	vector<int> small{ 1,2 };
+	vector<int> big{ 1 };
+	if (small == big)
+		cout << "same!" << endl;
+	else
+		cout << "different!!" << endl;
 	return 0;
 }
 
