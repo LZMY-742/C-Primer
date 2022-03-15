@@ -119,11 +119,14 @@ vector<int>::iterator& search(vector<int>::iterator& b, vector<int>::iterator& e
 int main(int argc, char **argv)
 {
 	vector<int> small{ 1,2 };
-	vector<int> big{ 1 };
-	if (small == big)
+	list<int> dream{ 1,22,2 };
+	vector<int> dream_temp{ dream.begin(),dream.end() };
+	if (small == dream_temp)
 		cout << "same!" << endl;
+	else if (small > dream_temp)
+		cout << "vector is bigger!" << endl;
 	else
-		cout << "different!!" << endl;
+		cout << "list is bigger!" << endl;
 	return 0;
 }
 
