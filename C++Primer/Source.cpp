@@ -118,12 +118,21 @@ vector<int>::iterator& search(vector<int>::iterator& b, vector<int>::iterator& e
 }
 int main(int argc, char **argv)
 {
-	string word;
-	deque<string> word_list;
-	while (cin >> word)
-		word_list.emplace_back(word);
-	for (auto itr = word_list.begin(); itr != word_list.end(); ++itr)
-		cout << *itr << endl;
+	list<int> num_list{1,2,3,4,5,6,45};
+	deque<int> odd_list,even_list;
+	for (auto itr = num_list.begin(); itr != num_list.end(); ++itr)
+	{
+		if (*itr % 2 == 0)
+			even_list.emplace_front(*itr);
+		else
+			odd_list.emplace_front(*itr);
+	}
+	cout << "Odd number: " << endl;
+	for (auto num : odd_list)
+		cout << num << endl;
+	cout << "Even number: " << endl;
+	for (auto num : even_list)
+		cout << num << endl;
 	return 0;
 }
 
