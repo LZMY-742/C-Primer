@@ -118,13 +118,37 @@ vector<int>::iterator& search(vector<int>::iterator& b, vector<int>::iterator& e
 }
 int main(int argc, char **argv)
 {
-	int a = 0, b = 0, c = 0, d = 0;
-	vector<int> list{ 1,2,3 };
-	a = list[0];
-	b = *list.begin();
-	c = list.front();
-	d = *(--list.end());
-	cout << a << " " << b << " " << c << " " << d << " " << endl;
+	int ia[]{ 0,1,1,2,3,5,8,13,21,55,89 };
+	vector<int> iav;
+	list<int> ial;
+	for (auto i : ia)
+	{
+		iav.push_back(i);
+		ial.push_back(i);
+	}
+	auto itrv = iav.begin();
+	auto itrl = ial.begin();
+	while ( itrl != ial.end())
+	{
+		if (*itrl % 2 != 0)
+			itrl = ial.erase(itrl);
+		else
+			++itrl;
+		
+	}
+	while (itrv != iav.end())
+	{
+		if (*itrv % 2 == 0)
+			itrv = iav.erase(itrv);
+		else
+			++itrv;
+	}
+	for (auto i : iav)
+		cout << i << endl;
+	cout << endl;
+	for (auto i : ial)
+		cout << i << endl;
+
 	return 0;
 }
 
