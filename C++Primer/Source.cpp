@@ -118,13 +118,16 @@ vector<int>::iterator& search(vector<int>::iterator& b, vector<int>::iterator& e
 }
 int main(int argc, char **argv)
 {
-	vector<string> word_list;
-	auto bitr = word_list.begin();
-	string word;
-	while (cin >> word)
-		bitr = word_list.insert(bitr, word);
-	for (auto s : word_list)
-		cout << s << endl;
+	vector<int> iv{1, 2, 34, 4};
+	int some_val = 34;
+	auto iter = iv.begin(), mid = iv.begin() + iv.size() / 2;
+	while (iv.begin() != mid)
+		if (*mid == some_val)
+			mid = iv.insert(mid, 2 * some_val);
+		else
+			--mid;
+	for (auto i : iv)
+		cout << i << endl;
 	return 0;
 }
 
