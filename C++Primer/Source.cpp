@@ -118,15 +118,12 @@ vector<int>::iterator& search(vector<int>::iterator& b, vector<int>::iterator& e
 }
 int main(int argc, char **argv)
 {
-	vector<int> small{ 1,2 };
-	list<int> dream{ 1,22,2 };
-	vector<int> dream_temp{ dream.begin(),dream.end() };
-	if (small == dream_temp)
-		cout << "same!" << endl;
-	else if (small > dream_temp)
-		cout << "vector is bigger!" << endl;
-	else
-		cout << "list is bigger!" << endl;
+	string word;
+	deque<string> word_list;
+	while (cin >> word)
+		word_list.emplace_back(word);
+	for (auto itr = word_list.begin(); itr != word_list.end(); ++itr)
+		cout << *itr << endl;
 	return 0;
 }
 
