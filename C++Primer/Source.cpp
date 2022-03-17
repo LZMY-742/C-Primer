@@ -118,16 +118,13 @@ vector<int>::iterator& search(vector<int>::iterator& b, vector<int>::iterator& e
 }
 int main(int argc, char **argv)
 {
-	vector<int> iv{1, 2, 34, 4};
-	int some_val = 34;
-	auto iter = iv.begin(), mid = iv.begin() + iv.size() / 2;
-	while (iv.begin() != mid)
-		if (*mid == some_val)
-			mid = iv.insert(mid, 2 * some_val);
-		else
-			--mid;
-	for (auto i : iv)
-		cout << i << endl;
+	int a = 0, b = 0, c = 0, d = 0;
+	vector<int> list{ 1,2,3 };
+	a = list[0];
+	b = *list.begin();
+	c = list.front();
+	d = *(--list.end());
+	cout << a << " " << b << " " << c << " " << d << " " << endl;
 	return 0;
 }
 
