@@ -12,6 +12,7 @@
 #include <list>
 #include <deque>
 #include <array>
+#include <forward_list>
 using std::cout;
 using std::cin;
 using std::endl;
@@ -33,6 +34,7 @@ using std::ostringstream;
 using std::list;
 using std::deque;
 using std::array;
+using std::forward_list;
 
 vector<double> Account::vec(vecSize);
 double Account::interestRate = 0.2;
@@ -118,37 +120,21 @@ vector<int>::iterator& search(vector<int>::iterator& b, vector<int>::iterator& e
 }
 int main(int argc, char **argv)
 {
-	int ia[]{ 0,1,1,2,3,5,8,13,21,55,89 };
-	vector<int> iav;
-	list<int> ial;
-	for (auto i : ia)
+	forward_list<int> num_list{ 1,2,3,4,5,6,7 };
+	auto pre = num_list.before_begin(), curr = num_list.begin();
+	while (curr != num_list.end())
 	{
-		iav.push_back(i);
-		ial.push_back(i);
-	}
-	auto itrv = iav.begin();
-	auto itrl = ial.begin();
-	while ( itrl != ial.end())
-	{
-		if (*itrl % 2 != 0)
-			itrl = ial.erase(itrl);
+		if (*curr % 2 != 0)
+			curr = num_list.erase_after(pre);
 		else
-			++itrl;
-		
+		{
+			pre = curr;
+			++curr;
+		}
+			
 	}
-	while (itrv != iav.end())
-	{
-		if (*itrv % 2 == 0)
-			itrv = iav.erase(itrv);
-		else
-			++itrv;
-	}
-	for (auto i : iav)
-		cout << i << endl;
-	cout << endl;
-	for (auto i : ial)
-		cout << i << endl;
-
+	for (auto n : num_list)
+		cout << n << endl;
 	return 0;
 }
 
