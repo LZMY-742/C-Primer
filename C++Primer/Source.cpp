@@ -138,19 +138,18 @@ forward_list<string>& insert(forward_list<string>& stringList, const string& fin
 }
 int main(int argc, char **argv)
 {
-	forward_list<int> vi = { 0,1,2,3,4,5,6,7,8,9 };
-	auto itr = vi.begin(),before_itr=vi.before_begin();
+	list<int> vi = { 0,1,2,3,4,5,6,7,8,9 };
+	auto itr = vi.begin();
 	while (itr != vi.end())
 	{
 		if (*itr % 2)
 		{
-			itr = vi.insert_after(itr, *itr);
-			before_itr = itr;
-			++itr;
+			itr = vi.insert(itr, *itr);
+			++++itr;
 		}
 		else
 		{
-			itr = vi.erase_after(before_itr);
+			itr = vi.erase(itr);
 		}
 	}
 	for (auto n : vi)
