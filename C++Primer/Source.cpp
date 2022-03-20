@@ -118,7 +118,7 @@ vector<int>::iterator& search(vector<int>::iterator& b, vector<int>::iterator& e
 	}
 	return e;//没找到就返回最后一个迭代器，注意如果直接解引用尾迭代器会报错
 }
-forward_list<string>& insert(forward_list<string>& stringList, const string& find, const string& word)
+forward_list<string>& insert(forward_list<string>& stringList, const string& find, const string& word)//9.28
 {
 	bool flag = false;
 	auto itr = stringList.cbegin(), before_itr = stringList.cbegin();
@@ -138,11 +138,23 @@ forward_list<string>& insert(forward_list<string>& stringList, const string& fin
 }
 int main(int argc, char **argv)
 {
-	forward_list<string> word_list{ "Hello","CNM"};
-	
-	for (auto s : insert(word_list, "shenjingbing", "SHABI"))
-		cout << s << endl;
-	
+	forward_list<int> vi = { 0,1,2,3,4,5,6,7,8,9 };
+	auto itr = vi.begin(),before_itr=vi.before_begin();
+	while (itr != vi.end())
+	{
+		if (*itr % 2)
+		{
+			itr = vi.insert_after(itr, *itr);
+			before_itr = itr;
+			++itr;
+		}
+		else
+		{
+			itr = vi.erase_after(before_itr);
+		}
+	}
+	for (auto n : vi)
+		cout << n << endl;
 	return 0;
 }
 
