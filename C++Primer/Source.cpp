@@ -138,22 +138,9 @@ forward_list<string>& insert(forward_list<string>& stringList, const string& fin
 }
 int main(int argc, char **argv)
 {
-	list<int> vi = { 0,1,2,3,4,5,6,7,8,9 };
-	auto itr = vi.begin();
-	while (itr != vi.end())
-	{
-		if (*itr % 2)
-		{
-			itr = vi.insert(itr, *itr);
-			++++itr;
-		}
-		else
-		{
-			itr = vi.erase(itr);
-		}
-	}
-	for (auto n : vi)
-		cout << n << endl;
+	vector<char> prototype{ 'H','e','l','l','o' };
+	string s(prototype.begin(),prototype.end());
+	cout << s << endl;
 	return 0;
 }
 
