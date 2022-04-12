@@ -136,10 +136,36 @@ forward_list<string>& insert(forward_list<string>& stringList, const string& fin
 	}
 	return stringList;
 }
+void replace(string& s, const string& oldVal, const string& newVal)
+{
+	for (decltype(s.size()) i=0;i!=s.size(); ++i)
+	{
+		if (s[i] == oldVal[0])
+		{
+			auto ini = i;
+			string temp = "";
+			while (i != s.size() && i != ini + oldVal.size())
+			{
+				temp += s[i];
+				++i;
+			}
+			if (temp == oldVal)
+			{
+				s.replace(ini, oldVal.size(), newVal);
+				i = ini + newVal.size()-1;
+			}
+			else
+			{
+				--i;
+			}
+	
+		}
+	}
+}
 int main(int argc, char **argv)
 {
-	vector<char> prototype{ 'H','e','l','l','o' };
-	string s(prototype.begin(),prototype.end());
+	string s = "ddd thruxixi",old="thru",newVal="through";
+	replace(s, old, newVal);
 	cout << s << endl;
 	return 0;
 }
