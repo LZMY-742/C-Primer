@@ -1,1 +1,1 @@
-# C-Primer Solutions to problems in C++ Primer version 5
+# Solutions to problems in C++ Primer version 5
