@@ -38,14 +38,14 @@ using std::forward_list;
 
 vector<double> Account::vec(vecSize);
 double Account::interestRate = 0.2;
-istream& read(istream& is,Sales_data& a )
+istream& read(istream& is, Sales_data& a)
 {
 	double price = 0;
 	is >> a.bookNo >> a.units_sold >> price;
 	a.revenue = price * a.units_sold;
 	return is;
 }
-ostream& print(ostream& os,const Sales_data& b)
+ostream& print(ostream& os, const Sales_data& b)
 {
 	os << "revenue: " << b.revenue << endl << "units_sold: " << b.units_sold << endl
 		<< "bookNo: " << b.bookNo << endl;
@@ -57,7 +57,7 @@ Sales_data add(const Sales_data a, const Sales_data b)
 	c.combine(b);
 	return c;
 }
- istream& read_person(istream& is, Person& Amanda)//7.9
+istream& read_person(istream& is, Person& Amanda)//7.9
 {
 	is >> Amanda.name >> Amanda.address;
 	return is;
@@ -73,7 +73,7 @@ istream& read_file(vector<string>& vec)
 	if (in)
 	{
 		string line = "";
-		while (in>>line)
+		while (in >> line)
 		{
 			vec.push_back(line);
 		}
@@ -122,11 +122,11 @@ forward_list<string>& insert(forward_list<string>& stringList, const string& fin
 {
 	bool flag = false;
 	auto itr = stringList.cbegin(), before_itr = stringList.cbegin();
-	for (; itr != stringList.end(); before_itr=itr++)
+	for (; itr != stringList.end(); before_itr = itr++)
 	{
 		if (*itr == find)
 		{
-			itr = stringList.insert_after(itr, word) ;
+			itr = stringList.insert_after(itr, word);
 			++flag;
 		}
 	}
@@ -136,10 +136,57 @@ forward_list<string>& insert(forward_list<string>& stringList, const string& fin
 	}
 	return stringList;
 }
-int main(int argc, char **argv)
+void replace(string& s, const string& oldVal, const string& newVal)//9.44
 {
-	vector<char> prototype{ 'H','e','l','l','o' };
-	string s(prototype.begin(),prototype.end());
+	for (decltype(s.size()) i = 0; i != s.size(); ++i)
+	{
+		if (s[i] == oldVal[0])
+		{
+			auto ini = i;
+			string temp = "";
+			while (i != s.size() && i != ini + oldVal.size())
+			{
+				temp += s[i];
+				++i;
+			}
+			if (temp == oldVal)
+			{
+				s.replace(ini, oldVal.size(), newVal);
+				i = ini + newVal.size() - 1;
+			}
+			else
+			{
+				--i;
+			}
+
+		}
+	}
+}
+void replace2(string& s, const string& oldVal, string& newVal)//9.43
+{
+	int _size = oldVal.size();
+	int _size1 = newVal.size();
+	string::iterator it1 = s.begin();
+	string::iterator it2 = newVal.begin();
+	string::iterator it3 = newVal.end();
+
+	for (it1; it1 <= (s.end() - oldVal.size() + 1); ++it1)
+	{
+		//pos可以由两个迭代器相减得到,返回截取到的string  
+		if ((s.substr(it1 - s.begin(), _size) == oldVal))//substr()的作用就是截取string中的一段  
+		{
+			it1 = s.erase(it1, it1 + _size);//返回的是最后一个被删除的元素之后的位置  
+			it1 = s.insert(it1, it2, it3);//原因在于insert()函数返回了指向第一个插入字符的迭代器，而我将其直接赋值给it1，从const转为非const，类型不同，产生错误  
+
+			advance(it1, _size1 - 1);//向前_size1-1大小，目的是为了让it1仍然指向当前字符串的首位置，因为前面进行了++it1
+		}
+	}
+}
+
+int main(int argc, char** argv)
+{
+	string s = "ddd thruxixi", old = "thru", newVal = "through";
+	replace2(s, old, newVal);
 	cout << s << endl;
 	return 0;
 }
