@@ -185,9 +185,7 @@ void replace2(string& s, const string& oldVal, string& newVal)//9.43
 
 int main(int argc, char** argv)
 {
-	string s = "ddd thruxixi", old = "thru", newVal = "through";
-	replace2(s, old, newVal);
-	cout << s << endl;
+	cout << "Pull request" << endl;
 	return 0;
 }
 
